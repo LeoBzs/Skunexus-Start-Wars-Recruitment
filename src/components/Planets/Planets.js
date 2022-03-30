@@ -1,10 +1,14 @@
 import './Planets.css';
-
 import Grid from '../Grid';
+import { Link } from 'react-router-dom';
 
 function Planets() {
+const url = `https://swapi.dev/api/planets/`;
 
-  const data = {
+fetch(url)
+.then((resp) => resp.json())
+
+  const data = { 
     header: [
       'name',
       'rotation_period',
@@ -206,11 +210,23 @@ function Planets() {
     actions: [
       {
         label: 'Go to Films',
-        action: (row) => { console.log(`redirect to grid with ${row.films.length} Films`)}
+        action: (row) => { 
+          return (
+              <Link to={`/residents/`} title={`goes to list`}>
+
+              </Link>
+          )        
+        }
       },
       {
         label: 'Go to Residents',
-        action: (row) => { console.log(`redirect to grid with ${row.residents.length} Residents`)}
+        action: (row) => { 
+          return (
+            <Link to={`/residents/`} title={`goes to list`}>
+
+            </Link>
+          );
+        }
       }
     ]
   }
@@ -223,3 +239,5 @@ function Planets() {
 }
 
 export default Planets;
+
+//{values.map(values.filter(residents))

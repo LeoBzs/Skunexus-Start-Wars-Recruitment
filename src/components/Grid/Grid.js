@@ -1,6 +1,11 @@
 import './Grid.css';
+import { Link } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
 
 function Grid({data: {header = [], values = [], actions = []}}) {
+  const [data, setData] = useState([]); 
+  const [setActions] = useState([]); 
+
   return (
     <table className='gridTable'>
       <thead>
@@ -15,7 +20,17 @@ function Grid({data: {header = [], values = [], actions = []}}) {
             {header.map((colName) => <td key={colName}>{row[colName]}</td>)}
             {!!actions.length && 
               <td className='gridActions'>
-                {actions.map(({label, action}) => <button onClick={() => action(row)}>{label}</button>)}
+                {actions
+                .map(({label, action}) => 
+              <button onClick={() => action(row)}>
+
+                {label === 'Go to Residents'  &&
+                <Link to={`/residents/`} title={`goes to list`}>
+                {label}
+                </Link>
+                }
+
+              </button>)}
               </td>
             }
           </tr>
