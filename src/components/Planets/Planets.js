@@ -1,14 +1,81 @@
-import './Planets.css';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import Grid from '../Grid';
-import { Link } from 'react-router-dom';
 
-function Planets() {
-const url = `https://swapi.dev/api/planets/`;
+function Planets(){
 
-fetch(url)
-.then((resp) => resp.json())
+  const [data, setData] = useState([]); 
 
-  const data = { 
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(
+        "https://swapi.dev/api/planets/"
+      );
+      setData(res?.data.results);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [])
+  
+const name = data.map(value => (
+      <div className="content">
+        <span className="value">Name: </span><span>{value.name}</span>
+        <br /> <br />
+        </div>));
+
+const rotation_period = data.map(value => (
+  <div className="content">
+    <span className="value">Id: </span><span>{value.rotation_period}</span>
+    <br /> <br />
+    </div>));
+
+const orbital_period = data.map(value => (
+  <div className="content">
+    <span className="value"></span><span>{value.orbital_period}</span>
+    <br /> <br />
+    </div>));
+
+const diameter = data.map(value => (
+  <div className="content">
+    <span className="value"></span><span>{value.diameter}</span>
+    <br /> <br />
+    </div>));
+
+const climate = data.map(value => (
+  <div className="content">
+    <span className="value"></span><span>{value.climate}</span>
+    <br /> <br />
+    </div>));
+
+const gravity = data.map(value => (
+  <div className="content">
+    <span className="value"></span><span>{value.gravity}</span>
+    <br /> <br />
+    </div>));
+
+const terrain = data.map(value => (
+  <div className="content">
+    <span className="value"></span><span>{value.terrain}</span>
+    <br /> <br />
+    </div>));
+
+const surface_water = data.map(value => (
+  <div className="content">
+    <span className="value"></span><span>{value.surface_water}</span>
+    <br /> <br />
+    </div>));
+
+const population = data.map(value => (
+  <div className="content">
+    <span className="value"></span><span>{value.population}</span>
+    <br /> <br />
+    </div>));
+
+  const mapData = { 
     header: [
       'name',
       'rotation_period',
@@ -22,190 +89,16 @@ fetch(url)
     ],
     values: [
       {
-        'name': 'Tatooine',
-        'rotation_period': '23',
-        'orbital_period': '304',
-        'diameter': '10465',
-        'climate': 'arid',
-        'gravity': '1 standard',
-        'terrain': 'desert',
-        'surface_water': '1',
-        'population': '200000',
-        'residents': [
-          'http://swapi.dev/api/people/1/',
-          'http://swapi.dev/api/people/2/',
-          'http://swapi.dev/api/people/4/',
-          'http://swapi.dev/api/people/6/',
-          'http://swapi.dev/api/people/7/',
-          'http://swapi.dev/api/people/8/',
-          'http://swapi.dev/api/people/9/',
-          'http://swapi.dev/api/people/11/',
-          'http://swapi.dev/api/people/43/',
-          'http://swapi.dev/api/people/62/'
-        ],
-        'films': [
-          'http://swapi.dev/api/films/1/',
-          'http://swapi.dev/api/films/3/',
-          'http://swapi.dev/api/films/4/',
-          'http://swapi.dev/api/films/5/',
-          'http://swapi.dev/api/films/6/'
-        ],
-        'created': '2014-12-09T13:50:49.641000Z',
-        'edited': '2014-12-20T20:58:18.411000Z',
-        'url': 'http://swapi.dev/api/planets/1/'
-      },
-      {
-        'name': 'Alderaan',
-        'rotation_period': '24',
-        'orbital_period': '364',
-        'diameter': '12500',
-        'climate': 'temperate',
-        'gravity': '1 standard',
-        'terrain': 'grasslands, mountains',
-        'surface_water': '40',
-        'population': '2000000000',
-        'residents': [
-          'http://swapi.dev/api/people/5/',
-          'http://swapi.dev/api/people/68/',
-          'http://swapi.dev/api/people/81/'
-        ],
-        'films': [
-          'http://swapi.dev/api/films/1/',
-          'http://swapi.dev/api/films/6/'
-        ],
-        'created': '2014-12-10T11:35:48.479000Z',
-        'edited': '2014-12-20T20:58:18.420000Z',
-        'url': 'http://swapi.dev/api/planets/2/'
-      },
-      {
-        'name': 'Yavin IV',
-        'rotation_period': '24',
-        'orbital_period': '4818',
-        'diameter': '10200',
-        'climate': 'temperate, tropical',
-        'gravity': '1 standard',
-        'terrain': 'jungle, rainforests',
-        'surface_water': '8',
-        'population': '1000',
-        'residents': [],
-        'films': [
-          'http://swapi.dev/api/films/1/'
-        ],
-        'created': '2014-12-10T11:37:19.144000Z',
-        'edited': '2014-12-20T20:58:18.421000Z',
-        'url': 'http://swapi.dev/api/planets/3/'
-      },
-      {
-        'name': 'Hoth',
-        'rotation_period': '23',
-        'orbital_period': '549',
-        'diameter': '7200',
-        'climate': 'frozen',
-        'gravity': '1.1 standard',
-        'terrain': 'tundra, ice caves, mountain ranges',
-        'surface_water': '100',
-        'population': 'unknown',
-        'residents': [],
-        'films': [
-          'http://swapi.dev/api/films/2/'
-        ],
-        'created': '2014-12-10T11:39:13.934000Z',
-        'edited': '2014-12-20T20:58:18.423000Z',
-        'url': 'http://swapi.dev/api/planets/4/'
-      },
-      {
-        'name': 'Dagobah',
-        'rotation_period': '23',
-        'orbital_period': '341',
-        'diameter': '8900',
-        'climate': 'murky',
-        'gravity': 'N/A',
-        'terrain': 'swamp, jungles',
-        'surface_water': '8',
-        'population': 'unknown',
-        'residents': [],
-        'films': [
-          'http://swapi.dev/api/films/2/',
-          'http://swapi.dev/api/films/3/',
-          'http://swapi.dev/api/films/6/'
-        ],
-        'created': '2014-12-10T11:42:22.590000Z',
-        'edited': '2014-12-20T20:58:18.425000Z',
-        'url': 'http://swapi.dev/api/planets/5/'
-      },
-      {
-        'name': 'Bespin',
-        'rotation_period': '12',
-        'orbital_period': '5110',
-        'diameter': '118000',
-        'climate': 'temperate',
-        'gravity': '1.5 (surface), 1 standard (Cloud City)',
-        'terrain': 'gas giant',
-        'surface_water': '0',
-        'population': '6000000',
-        'residents': [
-          'http://swapi.dev/api/people/26/'
-        ],
-        'films': [
-          'http://swapi.dev/api/films/2/'
-        ],
-        'created': '2014-12-10T11:43:55.240000Z',
-        'edited': '2014-12-20T20:58:18.427000Z',
-        'url': 'http://swapi.dev/api/planets/6/'
-      },
-      {
-        'name': 'Endor',
-        'rotation_period': '18',
-        'orbital_period': '402',
-        'diameter': '4900',
-        'climate': 'temperate',
-        'gravity': '0.85 standard',
-        'terrain': 'forests, mountains, lakes',
-        'surface_water': '8',
-        'population': '30000000',
-        'residents': [
-          'http://swapi.dev/api/people/30/'
-        ],
-        'films': [
-          'http://swapi.dev/api/films/3/'
-        ],
-        'created': '2014-12-10T11:50:29.349000Z',
-        'edited': '2014-12-20T20:58:18.429000Z',
-        'url': 'http://swapi.dev/api/planets/7/'
-      },
-      {
-        'name': 'Naboo',
-        'rotation_period': '26',
-        'orbital_period': '312',
-        'diameter': '12120',
-        'climate': 'temperate',
-        'gravity': '1 standard',
-        'terrain': 'grassy hills, swamps, forests, mountains',
-        'surface_water': '12',
-        'population': '4500000000',
-        'residents': [
-          'http://swapi.dev/api/people/3/',
-          'http://swapi.dev/api/people/21/',
-          'http://swapi.dev/api/people/35/',
-          'http://swapi.dev/api/people/36/',
-          'http://swapi.dev/api/people/37/',
-          'http://swapi.dev/api/people/38/',
-          'http://swapi.dev/api/people/39/',
-          'http://swapi.dev/api/people/42/',
-          'http://swapi.dev/api/people/60/',
-          'http://swapi.dev/api/people/61/',
-          'http://swapi.dev/api/people/66/'
-        ],
-        'films': [
-          'http://swapi.dev/api/films/3/',
-          'http://swapi.dev/api/films/4/',
-          'http://swapi.dev/api/films/5/',
-          'http://swapi.dev/api/films/6/'
-        ],
-        'created': '2014-12-10T11:52:31.066000Z',
-        'edited': '2014-12-20T20:58:18.430000Z',
-        'url': 'http://swapi.dev/api/planets/8/'
-      }
+        'name': name,
+        'rotation_period': rotation_period,
+        'orbital_period': orbital_period,
+        'diameter': diameter,
+        'climate': climate,
+        'gravity': gravity,
+        'terrain': terrain,
+        'surface_water': surface_water,
+        'population': population
+    }
     ],
     actions: [
       {
@@ -215,19 +108,16 @@ fetch(url)
       },
       {
         label: 'Go to Residents',
-        action: (row) => { 
+        action: (row) => {   
         }
       }
     ]
   }
 
-  return (
-    <div className='App'>
-      <Grid data={data} />
-    </div>
-  );
-}
-
+return (
+  <div className='App'>
+  <Grid data={mapData} />
+  </div>
+);
+};
 export default Planets;
-
-//{values.map(values.filter(residents))

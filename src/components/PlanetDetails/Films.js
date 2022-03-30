@@ -81,7 +81,7 @@ const release_date = data.map(value => (
         label: 'Back to planets homepage',
         action: (row) => {   
         }
-      },
+      }
     ]
   }
 return (
