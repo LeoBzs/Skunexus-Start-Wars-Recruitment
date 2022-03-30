@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import React, {useState, useEffect} from 'react';
 
 function Grid({data: {header = [], values = [], actions = []}}) {
-  const [data, setData] = useState([]); 
-  const [setActions] = useState([]); 
 
   return (
     <table className='gridTable'>
@@ -22,15 +20,25 @@ function Grid({data: {header = [], values = [], actions = []}}) {
               <td className='gridActions'>
                 {actions
                 .map(({label, action}) => 
-              <button onClick={() => action(row)}>
 
+              <button onClick={() => action(row)}>
                 {label === 'Go to Residents'  &&
-                <Link to={`/residents/`} title={`goes to list`}>
+                <Link to={`/residents/`} title={`check residents`}>
                 {label}
                 </Link>
                 }
-
+                {label === 'Go to Films'  &&
+                <Link to={`/films`} title={`check films`}>
+                {label}
+                </Link>
+                }
+                {label === 'Back to planets homepage'  &&
+                <Link to={`/`} title={`back to planets`}>
+                {label}
+                </Link>
+                }
               </button>)}
+
               </td>
             }
           </tr>

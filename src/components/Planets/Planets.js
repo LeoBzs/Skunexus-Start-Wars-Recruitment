@@ -210,22 +210,12 @@ fetch(url)
     actions: [
       {
         label: 'Go to Films',
-        action: (row) => { 
-          return (
-              <Link to={`/residents/`} title={`goes to list`}>
-
-              </Link>
-          )        
+        action: (row) => {   
         }
       },
       {
         label: 'Go to Residents',
         action: (row) => { 
-          return (
-            <Link to={`/residents/`} title={`goes to list`}>
-
-            </Link>
-          );
         }
       }
     ]

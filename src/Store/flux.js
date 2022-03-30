@@ -3,7 +3,7 @@ const getState = ({ setStore }) => {
 		store: {
 			output: [],
 			people: [],
-			vehicles: []
+			films: []
 		},
 		actions: {
 			loadPlanets() {
@@ -32,19 +32,19 @@ const getState = ({ setStore }) => {
 					})
 					.catch(e => console.error(e));
 			},
-			loadVehicles() {
-				const url = "https://swapi.dev/api/vehicles";
+			loadFilms() {
+				const url = "https://swapi.dev/api/films";
 
 				fetch(url)
 					.then(res => res.json())
 					.then(result => {
-						console.log("vehicles*** ", result);
+						console.log("films*** ", result);
 						setStore({
-							vehicles: result.results
+							films: result.results
 						});
 					})
 					.catch(e => console.error(e));
-			}
+				}
 		}
 	};
 };
