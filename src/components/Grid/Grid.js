@@ -1,9 +1,10 @@
 import './Grid.css';
 import { Link } from 'react-router-dom';
 import React, {useState, useEffect} from 'react';
+import Example from '../Modal/Modal';
 
 function Grid({data: {header = [], values = [], actions = []}}) {
-
+  
   return (
     <table className='gridTable'>
       <thead>
@@ -23,17 +24,22 @@ function Grid({data: {header = [], values = [], actions = []}}) {
 
               <button onClick={() => action(row)}>
                 {label === 'Go to Residents'  &&
-                <Link to={`/residents/`} title={`check residents`}>
+                <Link to={`/residents/`} title={`check residents`} className='grid_link'>
                 {label}
                 </Link>
                 }
                 {label === 'Go to Films'  &&
-                <Link to={`/films`} title={`check films`}>
+                <Link to={`/films`} title={`check films`} className='grid_link'>
                 {label}
                 </Link>
                 }
+                {label === 'Add new Planet!'  &&
+                <span className='grid_link'>
+                {Example()}
+                </span>
+                }
                 {label === 'Back to planets homepage'  &&
-                <Link to={`/`} title={`back to planets`}>
+                <Link to={`/`} title={`back to planets`} className='grid_link'>
                 {label}
                 </Link>
                 }

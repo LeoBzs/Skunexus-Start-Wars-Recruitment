@@ -5,7 +5,7 @@ import Planets from '../Planets';
 const App = () => {
   return (
     <div className="App">
-      <h1>Star Wars Planets</h1>
+      <h1 className='main-title'>Star Wars Planets</h1>
       <Planets />
     </div>
   );

@@ -1,8 +1,11 @@
+@import url(https://fonts.googleapis.com/css?family=Bungee);
+
 .gridTable {
   /* border: 1px solid #000; */
   width: 100%;
   border-spacing: 0;
   border-collapse: separate;
+  font-family: 'Bungee';
 }
 
 .gridTable thead tr th {
@@ -26,5 +29,23 @@
 }
 
 .gridActions button {
-  margin: 0 5px;
+  border-color: #993CF3;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #993CF3 inset, 0 0 0 0 #993CF3;
+  transition: all 150ms ease-in-out;
+  border-radius: 6px;
+}
+
+
+.gridActions button:hover {
+  box-shadow: 0 0 10px 0 #993CF3 inset, 0 0 10px 4px #993CF3;
+}
+
+.grid_link{
+  font-family: 'Bungee';
+  text-decoration: none;
+  color: white;
+}
+.grid_link:hover{
+  color: #7a30c2;
 }
